@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
+    defaultConfig {
+        applicationId "com.llew.bytecode.fix"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            assets.srcDirs = ['src/main/assets', 'src/main/assets/']
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.didi.onecar:didiqueuesdk:1.1.15.9'
+}
+
+apply plugin: 'com.llew.bytecode.fix'
+
+bytecodeFixConfig {
+    enable = true
+    logEnable = true
+    keepFixedJarFile = true
+    keepFixedClassFile = true
+    dependencies = []
+    fixConfig = [
+            'com.didi.queue.component.queuecard.view.QueueCardV2View##init()##System.out.println("I1 have hooked this method by BytecodeFixer plugin !!!");##0',
+            'com.didi.queue.utils.UIUtils##isFastDoubleClick()##System.out.println("I1 have hooked this method by BytecodeFixer plugin !!!");##0',
+            'com.didi.queue.TestUtils##get()##System.out.println("I1 have hooked this method by BytecodeFixer plugin !!!");##0'
+    ]
+}

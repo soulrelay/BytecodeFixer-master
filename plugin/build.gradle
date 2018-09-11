@@ -1,0 +1,52 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+        url 'https://maven.google.com/'
+        name 'Google'
+    }
+}
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+
+    compile 'com.android.tools.build:gradle:3.0.1'
+    compile 'org.javassist:javassist:3.18.2-GA'
+    //compile fileTree(dir: 'libs', include: ['*.jar'])
+
+}
+
+//def webUrl = 'https://github.com/llew2011/BytecodeFixer'
+//def gitUrl = 'https://github.com/llew2011/BytecodeFixer.git'
+//def orgName = 'llew'
+//def verName = '1.0.6'
+//def libName = 'BytecodeFixer'
+//def grpName = 'com.llew.bytecode.fix.gradle'
+//def libDesc = 'BytecodeFixer can fix third platform jar file that has some bugs by javassist in Android'
+//
+//
+//apply plugin: 'com.novoda.bintray-release'
+//
+//publish {
+//    userOrg = orgName
+//    groupId = grpName
+//    artifactId = libName
+//    publishVersion = verName
+//    desc = libDesc
+//    website = webUrl
+//}
+
+//group = 'com.llew.bytecode.fix.gradle'
+//version = '2.0.5'
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            repository(url: uri("../repo"))
+//        }
+//    }
+//}
