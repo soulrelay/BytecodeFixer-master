@@ -41,12 +41,12 @@ dependencies {
 //    website = webUrl
 //}
 
-//group = 'com.llew.bytecode.fix.gradle'
-//version = '2.0.5'
-//uploadArchives {
-//    repositories {
-//        mavenDeployer {
-//            repository(url: uri("../repo"))
-//        }
-//    }
-//}
+group = 'com.llew.bytecode.fix.gradle'
+version = '2.0.18'
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri("../repo"))
+        }
+    }
+}

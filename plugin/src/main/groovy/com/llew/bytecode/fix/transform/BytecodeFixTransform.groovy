@@ -59,7 +59,7 @@ public class BytecodeFixTransform extends Transform {
             throw new IllegalArgumentException("TransformInput is null !!!")
         }
 
-        TransformOutputProvider outputProvider = transformInvocation.outputProvider;
+        TransformOutputProvider outputProvider = transformInvocation.outputProvider
 
         if (null == outputProvider) {
             throw new IllegalArgumentException("TransformInput is null !!!")
@@ -76,7 +76,7 @@ public class BytecodeFixTransform extends Transform {
 
         for (TransformInput input : inputs) {
 
-            if (null == input) continue;
+            if (null == input) continue
 
             for (DirectoryInput directoryInput : input.directoryInputs) {
 
@@ -124,6 +124,8 @@ public class BytecodeFixTransform extends Transform {
                             if (null != injectedJarFile && injectedJarFile.exists()) {
                                 FileUtils.copyFile(injectedJarFile, dest)
                                 Logger.e(jarInput.file.name + " has successful hooked !!!")
+                                Logger.e("injectedJarFile.absolutePath" + injectedJarFile.absolutePath)
+                                Logger.e("dest.absolutePath" + dest.absolutePath)
                                 if (null != mExtension && !mExtension.keepFixedJarFile) {
                                     injectedJarFile.delete()
                                 }

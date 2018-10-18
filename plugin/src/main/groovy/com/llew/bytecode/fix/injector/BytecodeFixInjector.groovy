@@ -11,6 +11,7 @@ import org.gradle.api.Project
 
 import java.util.jar.JarFile
 import java.util.zip.ZipFile
+
 /**
  * 字节码注入器
  * <p>
@@ -22,10 +23,10 @@ import java.util.zip.ZipFile
 
 public class BytecodeFixInjector {
 
-    private static final String INJECTOR  = "injector"
-    private static final String JAVA      = ".java"
-    private static final String CLASS     = ".class"
-    private static final String JAR       = ".jar"
+    private static final String INJECTOR = "injector"
+    private static final String JAVA = ".java"
+    private static final String CLASS = ".class"
+    private static final String JAR = ".jar"
 
     private static ClassPool sClassPool
     private static BytecodeFixInjector sInjector
@@ -91,7 +92,7 @@ public class BytecodeFixInjector {
         rootFile.mkdirs()
 
         File unzipDir = new File(rootFile, "classes")
-        File jarDir   = new File(rootFile, "jar")
+        File jarDir = new File(rootFile, "jar")
 
         JarFile jarFile = new JarFile(jar)
         mExtension.fixConfig.each { config ->
@@ -103,13 +104,13 @@ public class BytecodeFixInjector {
                         throw new IllegalArgumentException("参数配置有问题")
                     }
 
-                    def className   = configs[0].trim()
-                    def methodName  = configs[1].trim()
+                    def className = configs[0].trim()
+                    def methodName = configs[1].trim()
                     def injectValue = configs[2].trim()
-                    def injectLine  = 0
+                    def injectLine = 0
                     if (4 == configs.length) {
                         try {
-                            injectLine  = Integer.parseInt(configs[3])
+                            injectLine = Integer.parseInt(configs[3])
                         } catch (Exception e) {
                             throw new IllegalArgumentException("行数配置有问题")
                         }
@@ -228,9 +229,9 @@ public class BytecodeFixInjector {
                 }
             }
         }
-
         // 4、循环体结束，判断classes文件夹下是否有文件
         if (FileUtils.hasFiles(unzipDir)) {
+            Logger.e(jar.name + " unzipDir " + unzipDir)
 
             destFile = new File(jarDir, jar.name)
             FileUtils.clearFile(destFile)
@@ -240,7 +241,8 @@ public class BytecodeFixInjector {
                 FileUtils.clearFile(unzipDir)
             }
         } else {
-            FileUtils.clearFile(rootFile)
+            Logger.e(jar.name + " rootFile unzipDir" + unzipDir)
+            //FileUtils.clearFile(rootFile)
         }
 
         jarFile.close()
