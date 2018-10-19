@@ -9,6 +9,7 @@ import javassist.CtClass
 import javassist.CtMethod
 import org.gradle.api.Project
 
+import java.text.SimpleDateFormat
 import java.util.jar.JarFile
 import java.util.zip.ZipFile
 
@@ -85,7 +86,7 @@ public class BytecodeFixInjector {
         def baseDir = new StringBuilder().append(mProject.projectDir.absolutePath)
                 .append(File.separator).append(INJECTOR)
                 .append(File.separator).append(mVersionName)
-                .append(File.separator).append(jarName).toString()
+                .append(File.separator).append(jarName + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS").format(new Date())).toString()
 
         File rootFile = new File(baseDir)
         FileUtils.clearFile(rootFile)

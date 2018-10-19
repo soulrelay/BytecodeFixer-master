@@ -87,7 +87,7 @@ public class BytecodeFixTransform extends Transform {
                         // ClassInjector.injector.inject(directoryInput.file.absolutePath, mPackageName.replaceAll("\\.", File.separator));
 
                         File dest = outputProvider.getContentLocation(directoryInput.getName(), directoryInput.getContentTypes(), directoryInput.getScopes(), Format.DIRECTORY);
-                        FileUtils.copyDirectory(directoryInput.file, dest);
+                        FileUtils.copyDirectory(directoryInput.file, dest)
                     }
                 }
             }
@@ -95,11 +95,12 @@ public class BytecodeFixTransform extends Transform {
             for (JarInput jarInput : input.jarInputs) {
                 if (jarInput) {
                     if (jarInput.file && jarInput.file.exists()) {
-                        String jarName = jarInput.name;
-                        String md5Name = DigestUtils.md5Hex(jarInput.file.absolutePath);
+                        println("jarinput --->" + jarInput.file)
+                        String jarName = jarInput.name
+                        String md5Name = DigestUtils.md5Hex(jarInput.file.absolutePath)
 
                         if (jarName.endsWith(".jar")) {
-                            jarName = jarName.substring(0, jarName.length() - 4);
+                            jarName = jarName.substring(0, jarName.length() - 4)
                         }
 
                         // 在这里jar文件进行动态修复
@@ -108,17 +109,17 @@ public class BytecodeFixTransform extends Transform {
                             injectedJarFile = BytecodeFixInjector.injector.inject(jarInput.file)
                         }
 
-                        File dest = outputProvider.getContentLocation(DigestUtils.md5Hex(jarName + md5Name), jarInput.contentTypes, jarInput.scopes, Format.JAR);
+                        File dest = outputProvider.getContentLocation(DigestUtils.md5Hex(jarName + md5Name), jarInput.contentTypes, jarInput.scopes, Format.JAR)
 
                         if (dest) {
                             if (dest.parentFile) {
                                 if (!dest.parentFile.exists()) {
-                                    dest.parentFile.mkdirs();
+                                    dest.parentFile.mkdirs()
                                 }
                             }
 
                             if (!dest.exists()) {
-                                dest.createNewFile();
+                                dest.createNewFile()
                             }
 
                             if (null != injectedJarFile && injectedJarFile.exists()) {

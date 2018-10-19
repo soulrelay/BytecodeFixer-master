@@ -3,7 +3,7 @@
   <groupId>com.llew.bytecode.fix.gradle</groupId>
   <artifactId>plugin</artifactId>
   <versioning>
-    <release>2.0.19</release>
+    <release>2.0.21</release>
     <versions>
       <version>2.0.4</version>
       <version>2.0.5</version>
@@ -21,7 +21,9 @@
       <version>2.0.17</version>
       <version>2.0.18</version>
       <version>2.0.19</version>
+      <version>2.0.20</version>
+      <version>2.0.21</version>
     </versions>
-    <lastUpdated>20181018113201</lastUpdated>
+    <lastUpdated>20181019032459</lastUpdated>
   </versioning>
 </metadata>
