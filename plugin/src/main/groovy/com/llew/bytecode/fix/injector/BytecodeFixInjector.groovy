@@ -163,12 +163,17 @@ public class BytecodeFixInjector {
                     def contain = FileUtils.containsClass(jarFile, className)
 
                     if (contain) {
+                        println('--- contain ---')
                         // 1、判断是否进行过解压缩操作
                         if (!FileUtils.hasFiles(unzipDir)) {
+                            println('--- !FileUtils.hasFiles(unzipDir) ---')
                             FileUtils.unzipJarFile(jarFile, unzipDir)
                         }
 
                         // 2、开始注入文件，需要注意的是，appendClassPath后边跟的根目录，没有后缀，className后完整类路径，也没有后缀
+                        sClassPool = new ClassPool()
+                        sClassPool.appendSystemPath()
+                        appendDefaultClassPath()
                         sClassPool.appendClassPath(unzipDir.absolutePath)
 
                         // 3、开始注入，去除.class后缀
@@ -220,7 +225,7 @@ public class BytecodeFixInjector {
                                     ctMethod.setBody(injectValue)
                                 }
                             }
-
+                            println('ctClass.writeFile')
                             ctClass.writeFile(unzipDir.absolutePath)
                             ctClass.detach()
                         } else {

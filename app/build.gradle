@@ -44,9 +44,13 @@ bytecodeFixConfig {
     dependencies = []
     fixConfig = [
             'com.didi.queue.component.queuecard.view.QueueCardV2View##init()##System.out.println("I1 have hooked this method by BytecodeFixer plugin !!!");##0',
-            'com.didi.queue.utils.UIUtils##isFastDoubleClick()##System.out.println("I1 have hooked this method by BytecodeFixer plugin !!!");##0',
-            'com.didi.queue.TestUtils##get()##System.out.println("I1 have hooked this method by BytecodeFixer plugin !!!");##0',
-            'android.support.constraint.ConstraintLayout##setId(int)##System.out.println("I1 have hooked this method by BytecodeFixer plugin !!!");##0',
-            'android.support.constraint.solver.widgets.Barrier##setBarrierType(int)##System.out.println("I1 have hooked this method by BytecodeFixer plugin !!!");##0'
+//            'com.didi.queue.utils.UIUtils##isFastDoubleClick()##System.out.println("I1 have hooked this method by BytecodeFixer plugin !!!");##0',
+//            'com.didi.queue.TestUtils##get()##System.out.println("I1 have hooked this method by BytecodeFixer plugin !!!");##0',
+//            'android.support.constraint.ConstraintLayout##setId(int)##System.out.println("I1 have hooked this method by BytecodeFixer plugin !!!");##0',
+//            'android.support.constraint.solver.widgets.Barrier##setBarrierType(int)##System.out.println("I1 have hooked this method by BytecodeFixer plugin !!!");##0',
+            'com.didi.queue.component.queuecard.view.QueueCardV2View##init()##{}##0',
+            'com.didi.queue.component.queuecard.view.QueueCardV2View##getView()##System.out.println("I1 have hooked this method by BytecodeFixer plugin !!!");##0'
+
+
     ]
 }

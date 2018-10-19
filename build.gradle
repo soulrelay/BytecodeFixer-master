@@ -16,7 +16,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath 'com.llew.bytecode.fix.gradle:plugin:2.0.21'
+        classpath 'com.llew.bytecode.fix.gradle:plugin:2.0.25'
 
         //classpath 'com.novoda:bintray-release:0.3.4'
         // NOTE: Do not place your application dependencies here; they belong
