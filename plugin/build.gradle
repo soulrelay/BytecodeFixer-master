@@ -42,7 +42,7 @@ dependencies {
 //}
 
 group = 'com.llew.bytecode.fix.gradle'
-version = '2.0.25'
+version = '2.0.27'
 uploadArchives {
     repositories {
         mavenDeployer {
