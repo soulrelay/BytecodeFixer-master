@@ -1,0 +1,9 @@
+gradle 构建工具 编程框架
+ant maven只能通过xml进行配置 不够灵活 扩展式不好 没法像gradle那样通过gradle api进行代码编写构建
+gradle的优势
+
+./gradlew projects
+
+Root project 'BytecodeFixer-master'
++--- Project ':app'
+\--- Project ':plugin'

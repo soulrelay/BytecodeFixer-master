@@ -54,3 +54,50 @@ bytecodeFixConfig {
 
     ]
 }
+
+//配置 app module
+project(":app") {
+    Project project ->
+        project.afterEvaluate {
+            //获取build task 任务
+            Task buildTask = getBuildTask(project, ":app:build")
+            //获取 preBuild 任务
+            Task preBuildTask = getBuildTask(project, ":app:preBuild")
+
+            def taskStartTime = 0
+            def taskEndTime = 0
+
+            //在preBuild task 中追加一个监听获取在preBuild执行之前的时间戳的 action
+            preBuildTask.doFirst {
+                taskStartTime = System.currentTimeMillis()
+            }
+            //在build task 中追加一个监听获取执行完毕的时间戳的 action
+            buildTask.doLast {
+                taskEndTime = System.currentTimeMillis()
+                println "build task 执行时间：${taskEndTime - taskStartTime}"
+            }
+        }
+}
+
+/**
+ * 获取该project对应的build任务
+ * @param project
+ * @return
+ */
+Task getBuildTask(Project project, String taskPath) {
+
+    //获取该project管理task的容器
+    TaskContainer taskContainer = project.getTasks()
+
+    //拿到build的Task对象
+    Task buildTask = taskContainer.getByPath(taskPath)
+
+    return buildTask
+}
+
+this.getParentProject()
+def getParentProject(){
+    def name = this.getParent().name
+    println "the ${this.project.name}'s parent project name is: ${name}"
+}
+

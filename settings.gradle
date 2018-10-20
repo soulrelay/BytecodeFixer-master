@@ -1,1 +1,3 @@
-include ':app', ':plugin'
+include ':app', ':plugin', ':dilibrary'
+
+println '初始化阶段开始执行...'
