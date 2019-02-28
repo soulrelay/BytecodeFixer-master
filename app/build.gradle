@@ -41,18 +41,49 @@ bytecodeFixConfig {
     logEnable = true
     keepFixedJarFile = true
     keepFixedClassFile = true
-    dependencies = []
+    dependencies = [
+            getAppClassesDir()
+    ]
     fixConfig = [
-            'com.didi.queue.component.queuecard.view.QueueCardV2View##init()##System.out.println("I1 have hooked this method by BytecodeFixer plugin !!!");##0',
+                      'com.didi.queue.component.queuecard.view.QueueCardV2View##init()##System.out.println("I1 have hooked this method by BytecodeFixer plugin !!!");##0',
 //            'com.didi.queue.utils.UIUtils##isFastDoubleClick()##System.out.println("I1 have hooked this method by BytecodeFixer plugin !!!");##0',
 //            'com.didi.queue.TestUtils##get()##System.out.println("I1 have hooked this method by BytecodeFixer plugin !!!");##0',
 //            'android.support.constraint.ConstraintLayout##setId(int)##System.out.println("I1 have hooked this method by BytecodeFixer plugin !!!");##0',
 //            'android.support.constraint.solver.widgets.Barrier##setBarrierType(int)##System.out.println("I1 have hooked this method by BytecodeFixer plugin !!!");##0',
-            'com.didi.queue.component.queuecard.view.QueueCardV2View##init()##{}##0',
-            'com.didi.queue.component.queuecard.view.QueueCardV2View##getView()##System.out.println("I1 have hooked this method by BytecodeFixer plugin !!!");##0'
+            //           'com.didi.queue.component.queuecard.view.QueueCardV2View##init()##{}##0',
+            //           'com.didi.queue.component.queuecard.view.QueueCardV2View##getView()##System.out.println("I1 have hooked this method by BytecodeFixer plugin !!!");##0'
 
+          //  'com.didi.queue.component.queuecard.view.QueueCardV2View##init()##com.llew.bytecode.fix.bean.Person var5 = new com.llew.bytecode.fix.bean.Person();var5.name = "xiaoming";##6'
 
     ]
+}
+
+String getAppClassesDir() {
+
+    android.applicationVariants.all { variant ->
+
+        def variantOutput = variant.outputs.first()
+        def variantName = variant.name
+        def variantData = variant.variantData
+        def buildType = variant.buildType.name
+
+        def str = new StringBuffer().append(project.rootDir.absolutePath)
+                .append(File.separator).append("app")
+                .append(File.separator).append("build")
+                .append(File.separator).append("intermediates")
+                .append(File.separator).append("classes")
+                .append(File.separator).append(variantName.subSequence(0, buildType.length()))
+                .append(File.separator).append(buildType)
+                .append(File.separator).toString()
+        return str
+    }
+
+    return new StringBuffer().append(project.rootDir.absolutePath)
+            .append(File.separator).append("app")
+            .append(File.separator).append("build")
+            .append(File.separator).append("intermediates")
+            .append(File.separator).append("classes")
+            .append(File.separator).append("debug").toString()
 }
 
 //配置 app module
@@ -96,7 +127,8 @@ Task getBuildTask(Project project, String taskPath) {
 }
 
 this.getParentProject()
-def getParentProject(){
+
+def getParentProject() {
     def name = this.getParent().name
     println "the ${this.project.name}'s parent project name is: ${name}"
 }
