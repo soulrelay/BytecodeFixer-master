@@ -286,9 +286,25 @@ public class BytecodeFixInjector {
         } else {
             Logger.e("couldn't find android.jar file !!!")
         }
+
+        //重新初始化classpool dependency中的class和jar也需要重新注入一次
+        if (null != mExtension && mExtension.enable && null != mExtension.dependencies) {
+            mExtension.dependencies.each { dependence ->
+                if (!TextUtil.isEmpty(dependence)) {
+                    File file1 = new File(dependence)
+                    if (file1.exists()) {
+                        appendClassPath(file1)
+                        Logger.e("append dependence path : " + dependence + " again")
+                    }
+                }else{
+                    Logger.e("append dependence path is null again" )
+
+                }
+            }
+        }
     }
 
-    public void appendClassPath(File path) {
+    void appendClassPath(File path) {
         if (null != path) {
             if (path.directory) {
                 sClassPool.appendPathList(path.absolutePath)
