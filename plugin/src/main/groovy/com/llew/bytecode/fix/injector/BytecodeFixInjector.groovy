@@ -288,6 +288,7 @@ public class BytecodeFixInjector {
         }
 
         //重新初始化classpool dependency中的class和jar也需要重新注入一次
+        //javassist.CannotCompileException: [source error] no such class
         if (null != mExtension && mExtension.enable && null != mExtension.dependencies) {
             mExtension.dependencies.each { dependence ->
                 if (!TextUtil.isEmpty(dependence)) {
